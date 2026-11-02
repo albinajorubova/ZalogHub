@@ -1,0 +1,41 @@
+@use 'sass:list';
+@use 'sass:meta';
+
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      @content;
+    }
+  }
+}
+
+@mixin transition(
+  $props: opacity,
+  $duration: var(--default-transition-duration, 0.3s),
+  $timing: var(--default-transition-timing-function, ease-in-out)
+) {
+  @if meta.type-of($props) != 'list' {
+    $props: ($props,);
+  }
+
+  $result: ();
+
+  @each $item in $props {
+    $property: list.nth($item, 1);
+    $value: #{$property} #{$duration} #{$timing};
+    $result: list.append($result, $value, comma);
+  }
+
+  transition: $result;
+}
+
+@mixin transitions {
+  --default-transition-duration: 0.3s;
+  --default-transition-timing-function: ease-in-out;
+}

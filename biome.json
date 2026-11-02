@@ -1,0 +1,100 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.4/schema.json",
+
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+
+  "files": {
+    "ignoreUnknown": true,
+    "includes": ["**", "!node_modules", "!.pnpm-store", "!dist", "!build", "!coverage"]
+  },
+
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "lineEnding": "lf"
+  },
+
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+
+      "correctness": {
+        "useExhaustiveDependencies": "off"
+      },
+
+      "a11y": {
+        "noSvgWithoutTitle": "off",
+        "noStaticElementInteractions": "off",
+        "useKeyWithClickEvents": "off",
+        "useMediaCaption": "off"
+      },
+
+      "security": {
+        "noDangerouslySetInnerHtml": "warn"
+      }
+    },
+    "domains": {
+      "react": "recommended"
+    }
+  },
+
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "all",
+      "arrowParentheses": "always"
+    }
+  },
+
+  "css": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 100,
+      "lineEnding": "lf",
+      "quoteStyle": "single"
+    },
+    "linter": {
+      "enabled": true
+    }
+  },
+
+  "assist": {
+    "actions": {
+      "source": {
+        "useSortedProperties": "on",
+
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ["react", "react-dom"],
+              [":PACKAGE:"],
+
+              ":BLANK_LINE:",
+
+              ["@/**"],
+
+              ":BLANK_LINE:",
+
+              ["../**", "./**", "!./*.module.scss"],
+
+              ":BLANK_LINE:",
+
+              ["./*.module.scss", "*.scss", "*.css"]
+            ]
+          }
+        }
+      }
+    }
+  }
+}
